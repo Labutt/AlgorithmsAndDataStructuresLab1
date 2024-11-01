@@ -38,9 +38,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
 timeResultForSorted = []
 for i in range(slowSortLow, slowSortHigh, slowSortStep):
     seed = time.time()
@@ -57,9 +54,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForSorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
 timeResultForBackwards = []
 for i in range(slowSortLow, slowSortHigh, slowSortStep):
     seed = time.time()
@@ -75,9 +69,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
         time_end = time.time()
         timeResultForOne.append(time_end - time_start)
     timeResultForBackwards.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
-
-
-
 
 timeResultForPartlySorted = []
 for i in range(slowSortLow, slowSortHigh, slowSortStep):
@@ -97,14 +88,11 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForPartlySorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 curveSorted = np.polyfit(n, timeResultForSorted, 2)
 curveBackwards = np.polyfit(n, timeResultForBackwards, 2)
 curvePartlySorted = np.polyfit(n, timeResultForPartlySorted, 2)
-#plt.figure(figsize=(10, 6))
 plt.scatter(n, timeResultForRandom, color='red')
 plt.scatter(n, timeResultForSorted, color='blue')
 plt.scatter(n, timeResultForBackwards, color='green')
@@ -121,12 +109,16 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-
 print('SelectionSort')
 print(timeResultForRandom)
 print(timeResultForSorted)
 print(timeResultForBackwards)
 print(timeResultForPartlySorted)
+print('Полином для случайного массива: ', np.poly1d(curveRandom))
+print('Полином для отсортированного массива: ', np.poly1d(curveSorted))
+print('Полином для массива, отсортированного в обратном порядке: ', np.poly1d(curveBackwards))
+print('Полином для частично отсортированного массива массива: ', np.poly1d(curvePartlySorted))
+
 #---------------------------------------------------------------------
 
 def insertion_sort(arr):
@@ -153,8 +145,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForSorted = []
 for i in range(slowSortLow, slowSortHigh, slowSortStep):
     random.seed(sortedSeed[(i - slowSortLow) // slowSortStep])
@@ -169,8 +159,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForSorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForBackwards = []
 for i in range(slowSortLow, slowSortHigh, slowSortStep):
     random.seed(backwardsSeed[(i - slowSortLow) // slowSortStep])
@@ -184,9 +172,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
         time_end = time.time()
         timeResultForOne.append(time_end - time_start)
     timeResultForBackwards.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
-
-
-
 
 timeResultForPartlySorted = []
 for i in range(slowSortLow, slowSortHigh, slowSortStep):
@@ -204,10 +189,7 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
             timeResultForOne.append(time_end - time_start)
         timeResultForPartlySorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 curveSorted = np.polyfit(n, timeResultForSorted, 2)
 curveBackwards = np.polyfit(n, timeResultForBackwards, 2)
@@ -229,13 +211,15 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-
-
 print('InsertionSort')
 print(timeResultForRandom)
 print(timeResultForSorted)
 print(timeResultForBackwards)
 print(timeResultForPartlySorted)
+print('Полином для случайного массива: ', np.poly1d(curveRandom))
+print('Полином для отсортированного массива: ', np.poly1d(curveSorted))
+print('Полином для массива, отсортированного в обратном порядке: ', np.poly1d(curveBackwards))
+print('Полином для частично отсортированного массива массива: ', np.poly1d(curvePartlySorted))
 # #---------------------------------------------------------------------
 
 def bubble_sort(arr):
@@ -261,8 +245,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForSorted = []
 for i in range(slowSortLow, slowSortHigh, slowSortStep):
 
@@ -277,8 +259,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
             timeResultForOne.append(time_end - time_start)
         timeResultForSorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForBackwards = []
 for i in range(slowSortLow, slowSortHigh, slowSortStep):
 
@@ -292,8 +272,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
             time_end = time.time()
             timeResultForOne.append(time_end - time_start)
         timeResultForBackwards.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
-
-
 
 timeResultForPartlySorted = []
 for i in range(slowSortLow, slowSortHigh, slowSortStep):
@@ -311,9 +289,7 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
             timeResultForOne.append(time_end - time_start)
         timeResultForPartlySorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 curveSorted = np.polyfit(n, timeResultForSorted, 2)
 curveBackwards = np.polyfit(n, timeResultForBackwards, 2)
@@ -340,8 +316,13 @@ print(timeResultForRandom)
 print(timeResultForSorted)
 print(timeResultForBackwards)
 print(timeResultForPartlySorted)
+print('Полином для случайного массива: ', np.poly1d(curveRandom))
+print('Полином для отсортированного массива: ', np.poly1d(curveSorted))
+print('Полином для массива, отсортированного в обратном порядке: ', np.poly1d(curveBackwards))
+print('Полином для частично отсортированного массива массива: ', np.poly1d(curvePartlySorted))
 
  #---------------------------------------------------------------------
+
 randomSeed = []
 sortedSeed = []
 backwardsSeed = []
@@ -352,12 +333,9 @@ def merge_sort(arr):
         mid = len(arr) // 2
         left_half = arr[:mid]
         right_half = arr[mid:]
-
         merge_sort(left_half)
         merge_sort(right_half)
-
         i = j = k = 0
-
         while i < len(left_half) and j < len(right_half):
             if left_half[i] < right_half[j]:
                 arr[k] = left_half[i]
@@ -366,17 +344,14 @@ def merge_sort(arr):
                 arr[k] = right_half[j]
                 j += 1
             k += 1
-
         while i < len(left_half):
             arr[k] = left_half[i]
             i += 1
             k += 1
-
         while j < len(right_half):
             arr[k] = right_half[j]
             j += 1
             k += 1
-
     return arr
 
 fastSortsStep = 10000
@@ -401,9 +376,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
 timeResultForSorted = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     seed = time.time()
@@ -421,9 +393,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForSorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
 timeResultForBackwards = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     seed = time.time()
@@ -440,9 +409,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         time_end = time.time()
         timeResultForOne.append(time_end - time_start)
     timeResultForBackwards.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
-
-
-
 
 timeResultForPartlySorted = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
@@ -463,9 +429,7 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForPartlySorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 curveSorted = np.polyfit(n, timeResultForSorted, 2)
 curveBackwards = np.polyfit(n, timeResultForBackwards, 2)
@@ -487,13 +451,17 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-
 print('MergeSort')
 print(timeResultForRandom)
 print(timeResultForSorted)
 print(timeResultForBackwards)
 print(timeResultForPartlySorted)
-# #---------------------------------------------------------------------
+print('Полином для случайного массива: ', np.poly1d(curveRandom))
+print('Полином для отсортированного массива: ', np.poly1d(curveSorted))
+print('Полином для массива, отсортированного в обратном порядке: ', np.poly1d(curveBackwards))
+print('Полином для частично отсортированного массива массива: ', np.poly1d(curvePartlySorted))
+
+##---------------------------------------------------------------------
 
 def shell_sort_shell(arr):
     n = len(arr)
@@ -524,8 +492,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForSorted = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     random.seed(sortedSeed[(i - fastSortsLow) // fastSortsStep])
@@ -540,8 +506,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForSorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForBackwards = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     random.seed(backwardsSeed[(i - fastSortsLow) // fastSortsStep])
@@ -555,9 +519,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         time_end = time.time()
         timeResultForOne.append(time_end - time_start)
     timeResultForBackwards.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
-
-
-
 
 timeResultForPartlySorted = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
@@ -575,11 +536,7 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForPartlySorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 curveSorted = np.polyfit(n, timeResultForSorted, 2)
 curveBackwards = np.polyfit(n, timeResultForBackwards, 2)
@@ -601,13 +558,15 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-
-
 print('Shell')
 print(timeResultForRandom)
 print(timeResultForSorted)
 print(timeResultForBackwards)
 print(timeResultForPartlySorted)
+print('Полином для случайного массива: ', np.poly1d(curveRandom))
+print('Полином для отсортированного массива: ', np.poly1d(curveSorted))
+print('Полином для массива, отсортированного в обратном порядке: ', np.poly1d(curveBackwards))
+print('Полином для частично отсортированного массива массива: ', np.poly1d(curvePartlySorted))
 
 # #------------------------------------------------------------------
 
@@ -646,8 +605,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForSorted = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     random.seed(sortedSeed[(i - fastSortsLow) // fastSortsStep])
@@ -662,8 +619,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForSorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForBackwards = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     random.seed(backwardsSeed[(i - fastSortsLow) // fastSortsStep])
@@ -677,7 +632,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         time_end = time.time()
         timeResultForOne.append(time_end - time_start)
     timeResultForBackwards.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
-
 
 timeResultForPartlySorted = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
@@ -695,10 +649,7 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForPartlySorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 curveSorted = np.polyfit(n, timeResultForSorted, 2)
 curveBackwards = np.polyfit(n, timeResultForBackwards, 2)
@@ -720,12 +671,15 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-
 print('Hibbard')
 print(timeResultForRandom)
 print(timeResultForSorted)
 print(timeResultForBackwards)
 print(timeResultForPartlySorted)
+print('Полином для случайного массива: ', np.poly1d(curveRandom))
+print('Полином для отсортированного массива: ', np.poly1d(curveSorted))
+print('Полином для массива, отсортированного в обратном порядке: ', np.poly1d(curveBackwards))
+print('Полином для частично отсортированного массива массива: ', np.poly1d(curvePartlySorted))
 
 # #--------------------------------------------------------------------
 
@@ -814,7 +768,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     timeResultForPartlySorted.append(round((sum(timeResultForOne) / len(timeResultForOne)), 4))
 
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 curveSorted = np.polyfit(n, timeResultForSorted, 2)
 curveBackwards = np.polyfit(n, timeResultForBackwards, 2)
@@ -841,8 +794,12 @@ print(timeResultForRandom)
 print(timeResultForSorted)
 print(timeResultForBackwards)
 print(timeResultForPartlySorted)
+print('Полином для случайного массива: ', np.poly1d(curveRandom))
+print('Полином для отсортированного массива: ', np.poly1d(curveSorted))
+print('Полином для массива, отсортированного в обратном порядке: ', np.poly1d(curveBackwards))
+print('Полином для частично отсортированного массива массива: ', np.poly1d(curvePartlySorted))
 
-# #-----------------------------------------------------------------------
+ #-----------------------------------------------------------------------
 def quicksort(arr):
     if len(arr) <= 1:
         return arr
@@ -852,10 +809,10 @@ def quicksort(arr):
     right = [x for x in arr if x > pivot]
     return quicksort(left) + middle + quicksort(right)
 
-
 fastSortsStep = 10000
 fastSortsLow = 50000
 fastSortsHigh = 110000
+
 timeResultForRandom = []
 n = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
@@ -871,8 +828,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForSorted = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     random.seed(sortedSeed[(i - fastSortsLow) // fastSortsStep])
@@ -887,8 +842,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForSorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForBackwards = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     random.seed(backwardsSeed[(i - fastSortsLow) // fastSortsStep])
@@ -902,9 +855,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         time_end = time.time()
         timeResultForOne.append(time_end - time_start)
     timeResultForBackwards.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
-
-
-
 
 timeResultForPartlySorted = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
@@ -922,11 +872,7 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForPartlySorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 curveSorted = np.polyfit(n, timeResultForSorted, 2)
 curveBackwards = np.polyfit(n, timeResultForBackwards, 2)
@@ -953,8 +899,12 @@ print(timeResultForRandom)
 print(timeResultForSorted)
 print(timeResultForBackwards)
 print(timeResultForPartlySorted)
+print('Полином для случайного массива: ', np.poly1d(curveRandom))
+print('Полином для отсортированного массива: ', np.poly1d(curveSorted))
+print('Полином для массива, отсортированного в обратном порядке: ', np.poly1d(curveBackwards))
+print('Полином для частично отсортированного массива массива: ', np.poly1d(curvePartlySorted))
 
-# #----------------------------------------------------------------------------
+##----------------------------------------------------------------------------
 
 def heapify(arr, n, i):
     largest = i
@@ -975,10 +925,6 @@ def heap_sort(arr):
         (arr[i], arr[0]) = (arr[0], arr[i])
         heapify(arr, i, 0)
 
-
-
-
-
 timeResultForRandom = []
 n = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
@@ -994,8 +940,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForSorted = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     random.seed(sortedSeed[(i - fastSortsLow) // fastSortsStep])
@@ -1010,8 +954,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForSorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
 timeResultForBackwards = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
     random.seed(backwardsSeed[(i - fastSortsLow) // fastSortsStep])
@@ -1025,9 +967,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         time_end = time.time()
         timeResultForOne.append(time_end - time_start)
     timeResultForBackwards.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
-
-
-
 
 timeResultForPartlySorted = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
@@ -1045,11 +984,7 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForPartlySorted.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 curveSorted = np.polyfit(n, timeResultForSorted, 2)
 curveBackwards = np.polyfit(n, timeResultForBackwards, 2)
@@ -1071,10 +1006,12 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-
 print('Heapsort')
 print(timeResultForRandom)
 print(timeResultForSorted)
 print(timeResultForBackwards)
 print(timeResultForPartlySorted)
-#----------------------------------------------------------------------------
+print('Полином для случайного массива: ', np.poly1d(curveRandom))
+print('Полином для отсортированного массива: ', np.poly1d(curveSorted))
+print('Полином для массива, отсортированного в обратном порядке: ', np.poly1d(curveBackwards))
+print('Полином для частично отсортированного массива массива: ', np.poly1d(curvePartlySorted))

@@ -38,9 +38,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
 n = np.array(n)
 
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
@@ -50,8 +47,6 @@ plt.xlabel('Размер входных данных (n)')
 plt.ylabel('Время выполнения (с)')
 plt.grid()
 plt.plot(n, np.polyval(curveRandom, n), label = 'Сортировка выбором', color='red')
-
-
 
 #---------------------------------------------------------------------
 
@@ -79,11 +74,7 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 plt.scatter(n, timeResultForRandom, color='green')
 plt.title('Квадратичные сортировки')
@@ -92,10 +83,7 @@ plt.ylabel('Время выполнения (с)')
 plt.grid()
 plt.plot(n, np.polyval(curveRandom, n), label = 'Сортировка вставками', color='green')
 
-
-
-
-# #---------------------------------------------------------------------
+ #---------------------------------------------------------------------
 
 def bubble_sort(arr):
     n = len(arr)
@@ -104,8 +92,6 @@ def bubble_sort(arr):
             if arr[j] > arr[j + 1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
     return arr
-
-
 
 timeResultForRandom = []
 n = []
@@ -124,7 +110,6 @@ for i in range(slowSortLow, slowSortHigh, slowSortStep):
 
 
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 plt.scatter(n, timeResultForRandom, color='blue')
 plt.title('Квадратичные сортировки')
@@ -132,7 +117,6 @@ plt.xlabel('Размер входных данных (n)')
 plt.ylabel('Время выполнения (с)')
 plt.grid()
 plt.plot(n, np.polyval(curveRandom, n), label = 'Сортировка пузырьком', color='blue')
-
 
 plt.legend()
 plt.tight_layout()
@@ -150,12 +134,9 @@ def merge_sort(arr):
         mid = len(arr) // 2
         left_half = arr[:mid]
         right_half = arr[mid:]
-
         merge_sort(left_half)
         merge_sort(right_half)
-
         i = j = k = 0
-
         while i < len(left_half) and j < len(right_half):
             if left_half[i] < right_half[j]:
                 arr[k] = left_half[i]
@@ -164,17 +145,14 @@ def merge_sort(arr):
                 arr[k] = right_half[j]
                 j += 1
             k += 1
-
         while i < len(left_half):
             arr[k] = left_half[i]
             i += 1
             k += 1
-
         while j < len(right_half):
             arr[k] = right_half[j]
             j += 1
             k += 1
-
     return arr
 
 fastSortsStep = 10000
@@ -198,9 +176,6 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         time_end = time.time()
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
-
-
-
 
 n = np.array(n)
 
@@ -242,123 +217,109 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
-
-
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 plt.scatter(n, timeResultForRandom, color='blue')
 plt.xlabel('Размер входных данных (n)')
 plt.ylabel('Время выполнения (с)')
 plt.plot(n, np.polyval(curveRandom, n), label = 'Сортировка Шелла', color='blue')
 
-# #------------------------------------------------------------------
+#------------------------------------------------------------------
 
+def hibbard_sequence(n):
+    return [2**k - 1 for k in range(1, n) if 2**k - 1 < n][::-1]
 
+def shell_sort_hibbard(arr):
+    n = len(arr)
+    gap_sequence = hibbard_sequence(n)
+    for gap in gap_sequence:
+        for i in range(gap, n):
+            temp = arr[i]
+            j = i
+            while j >= gap and arr[j - gap] > temp:
+                arr[j] = arr[j - gap]
+                j -= gap
+            arr[j] = temp
+    return arr
 
-# def hibbard_sequence(n):
-#     return [2**k - 1 for k in range(1, n) if 2**k - 1 < n][::-1]
-#
-# def shell_sort_hibbard(arr):
-#     n = len(arr)
-#     gap_sequence = hibbard_sequence(n)
-#     for gap in gap_sequence:
-#         for i in range(gap, n):
-#             temp = arr[i]
-#             j = i
-#             while j >= gap and arr[j - gap] > temp:
-#                 arr[j] = arr[j - gap]
-#                 j -= gap
-#             arr[j] = temp
-#     return arr
-#
-# fastSortsStep = 1000
-# fastSortsLow = 5000
-# fastSortsHigh = 11000
-#
-# timeResultForRandom = []
-# n = []
-# for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
-#     n.append(i)
-#     random.seed(randomSeed[(i - fastSortsLow) // fastSortsStep])
-#     randomArray = [random.randint(1, i) for _ in range(i)]
-#     timeResultForOne = []
-#     for j in range(10):
-#         beingSortedArray = randomArray.copy()
-#         time_start = time.time()
-#         shell_sort_hibbard(beingSortedArray)
-#         time_end = time.time()
-#         timeResultForOne.append(time_end - time_start)
-#     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
-#
-#
-#
-# n = np.array(n)
-#
-# curveRandom = np.polyfit(n, timeResultForRandom, 2)
-# plt.scatter(n, timeResultForRandom, color='gold')
-# plt.title('Сортировка слиянием')
-# plt.xlabel('Размер входных данных (n)')
-# plt.ylabel('Время выполнения (с)')
-# plt.plot(n, np.polyval(curveRandom, n), label = 'Случайный массив', color='gold')
-#
-# # #--------------------------------------------------------------------
-#
-# def pratt_sequence(n):
-#     sequence = []
-#     i = 0
-#     while True:
-#         for j in range(i + 1):
-#             gap = 2**i * 3**j
-#             if gap < n:
-#                 sequence.append(gap)
-#             else:
-#                 return sorted(sequence)[::-1]
-#         i += 1
-#
-# def shell_sort_pratt(arr):
-#     n = len(arr)
-#     gap_sequence = pratt_sequence(n)
-#     for gap in gap_sequence:
-#         for i in range(gap, n):
-#             temp = arr[i]
-#             j = i
-#             while j >= gap and arr[j - gap] > temp:
-#                 arr[j] = arr[j - gap]
-#                 j -= gap
-#             arr[j] = temp
-#     return arr
-#
-# timeResultForRandom = []
-# n = []
-# for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
-#     n.append(i)
-#     random.seed(randomSeed[(i - fastSortsLow) // fastSortsStep])
-#     randomArray = [random.randint(1, i) for _ in range(i)]
-#     timeResultForOne = []
-#     for j in range(10):
-#         beingSortedArray = randomArray.copy()
-#         time_start = time.time()
-#         shell_sort_pratt(beingSortedArray)
-#         time_end = time.time()
-#         timeResultForOne.append(time_end - time_start)
-#     timeResultForRandom.append(round((sum(timeResultForOne) / len(timeResultForOne)), 4))
-#
-#
-# n = np.array(n)
-#
-# curveRandom = np.polyfit(n, timeResultForRandom, 2)
-# plt.scatter(n, timeResultForRandom, color='orange')
-# plt.title('Сортировка слиянием')
-# plt.xlabel('Размер входных данных (n)')
-# plt.ylabel('Время выполнения (с)')
-# plt.plot(n, np.polyval(curveRandom, n), label = 'Случайный массив', color='orange')
+fastSortsStep = 1000
+fastSortsLow = 5000
+fastSortsHigh = 11000
 
-# #-----------------------------------------------------------------------
+timeResultForRandom = []
+n = []
+for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
+    n.append(i)
+    random.seed(randomSeed[(i - fastSortsLow) // fastSortsStep])
+    randomArray = [random.randint(1, i) for _ in range(i)]
+    timeResultForOne = []
+    for j in range(10):
+        beingSortedArray = randomArray.copy()
+        time_start = time.time()
+        shell_sort_hibbard(beingSortedArray)
+        time_end = time.time()
+        timeResultForOne.append(time_end - time_start)
+    timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
+
+n = np.array(n)
+curveRandom = np.polyfit(n, timeResultForRandom, 2)
+plt.scatter(n, timeResultForRandom, color='gold')
+plt.title('Сортировка слиянием')
+plt.xlabel('Размер входных данных (n)')
+plt.ylabel('Время выполнения (с)')
+plt.plot(n, np.polyval(curveRandom, n), label = 'Случайный массив', color='gold')
+
+#--------------------------------------------------------------------
+
+def pratt_sequence(n):
+    sequence = []
+    i = 0
+    while True:
+        for j in range(i + 1):
+            gap = 2**i * 3**j
+            if gap < n:
+                sequence.append(gap)
+            else:
+                return sorted(sequence)[::-1]
+        i += 1
+
+def shell_sort_pratt(arr):
+    n = len(arr)
+    gap_sequence = pratt_sequence(n)
+    for gap in gap_sequence:
+        for i in range(gap, n):
+            temp = arr[i]
+            j = i
+            while j >= gap and arr[j - gap] > temp:
+                arr[j] = arr[j - gap]
+                j -= gap
+            arr[j] = temp
+    return arr
+
+timeResultForRandom = []
+n = []
+for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
+    n.append(i)
+    random.seed(randomSeed[(i - fastSortsLow) // fastSortsStep])
+    randomArray = [random.randint(1, i) for _ in range(i)]
+    timeResultForOne = []
+    for j in range(10):
+        beingSortedArray = randomArray.copy()
+        time_start = time.time()
+        shell_sort_pratt(beingSortedArray)
+        time_end = time.time()
+        timeResultForOne.append(time_end - time_start)
+    timeResultForRandom.append(round((sum(timeResultForOne) / len(timeResultForOne)), 4))
+
+n = np.array(n)
+curveRandom = np.polyfit(n, timeResultForRandom, 2)
+plt.scatter(n, timeResultForRandom, color='orange')
+plt.title('Сортировка слиянием')
+plt.xlabel('Размер входных данных (n)')
+plt.ylabel('Время выполнения (с)')
+plt.plot(n, np.polyval(curveRandom, n), label = 'Случайный массив', color='orange')
+
+#-----------------------------------------------------------------------
 def quicksort(arr):
     if len(arr) <= 1:
         return arr
@@ -367,7 +328,6 @@ def quicksort(arr):
     middle = [x for x in arr if x == pivot]
     right = [x for x in arr if x > pivot]
     return quicksort(left) + middle + quicksort(right)
-
 
 fastSortsStep = 10000
 fastSortsLow = 50000
@@ -387,19 +347,14 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 plt.scatter(n, timeResultForRandom, color='green')
 plt.xlabel('Размер входных данных (n)')
 plt.ylabel('Время выполнения (с)')
 plt.plot(n, np.polyval(curveRandom, n), label = 'Быстрая сортировка', color='green')
 
-
-# #----------------------------------------------------------------------------
+#----------------------------------------------------------------------------
 
 def heapify(arr, n, i):
     largest = i
@@ -420,10 +375,6 @@ def heap_sort(arr):
         (arr[i], arr[0]) = (arr[0], arr[i])
         heapify(arr, i, 0)
 
-
-
-
-
 timeResultForRandom = []
 n = []
 for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
@@ -439,12 +390,7 @@ for i in range(fastSortsLow, fastSortsHigh, fastSortsStep):
         timeResultForOne.append(time_end - time_start)
     timeResultForRandom.append(round((sum(timeResultForOne)/len(timeResultForOne)), 4))
 
-
-
-
-
 n = np.array(n)
-
 curveRandom = np.polyfit(n, timeResultForRandom, 2)
 plt.scatter(n, timeResultForRandom, color='yellow')
 plt.xlabel('Размер входных данных (n)')
